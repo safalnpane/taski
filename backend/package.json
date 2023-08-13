@@ -1,4 +1,7 @@
 {
+  "name": "taski-backend",
+  "description": "Backend for taski app",
+  "version": "0.0.1",
   "scripts": {
     "dev": "nodemon app.js"
   },

@@ -1,4 +1,7 @@
 {
+  "name": "Taski-frontend",
+  "description": "Frontend for minimalist todo app",
+  "version": "0.0.1",
   "scripts": {
     "dev": "next dev",
     "build": "next build",

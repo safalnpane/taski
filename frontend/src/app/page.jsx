@@ -2,6 +2,7 @@
 "use client";
 
 import { useState } from "react";
+import { v4 as uuid } from "uuid";
 
 import TodoItem from "../components/TodoItem";
 import TodoList from "../components/TodoList";
@@ -11,8 +12,13 @@ const HomePage = () => {
   const [todos, setTodos] = useState([]);
 
   function handleTodoAdd(task) {
-    setTodos([...todos, { name: task, done: false, stared: false }]);
+    setTodos([
+      ...todos,
+      { id: uuid(), name: task, done: false, stared: false },
+    ]);
   }
+
+  function handleCheck() {}
 
   return (
     <main className="container">

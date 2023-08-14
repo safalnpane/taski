@@ -18,7 +18,7 @@ const TodoList = ({ title, todos, emptyMessage }) => {
         </p>
       ) : null}
       {todos.map((todo) => (
-        <TodoItem key={todo.name} todo={todo} />
+        <TodoItem key={todo.id} todo={todo} />
       ))}
     </div>
   );

@@ -1,0 +1,24 @@
+/* todoItem.module.css */
+
+.todoItem {
+  background-color: rgba(255, 255, 255, 0.85);
+  padding: 10px;
+  border-radius: 8px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.icon {
+  width: 20px;
+  color: gray;
+}
+
+.todoText {
+  display: flex;
+  gap: 10px;
+}
+
+.star {
+  color: gold;
+}

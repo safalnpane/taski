@@ -1,52 +1,29 @@
 // page.jsx
+"use client";
+
+import { useState } from "react";
 
 import TodoItem from "../components/TodoItem";
+import TodoList from "../components/TodoList";
 import TodoInput from "../components/TodoInput";
 
 const HomePage = () => {
-  const todos = [
-    {
-      name: "Build Nextjs app",
-      done: true,
-      stared: true,
-    },
-    {
-      name: "Implement backend",
-      done: false,
-      stared: false,
-    },
-    {
-      name: "Style app",
-      done: false,
-      stared: false,
-    },
-    {
-      name: "Read vastu book",
-      done: false,
-      stared: true,
-    },
-    {
-      name: "Explore js ecosystem",
-      done: true,
-      stared: false,
-    },
-  ];
+  const [todos, setTodos] = useState([]);
+
   const important = todos.filter((todo) => todo.stared === true);
   return (
     <main className="container">
       <h1>Taski</h1>
-      <div className="todoContainer">
-        <h2 style={{ textAlign: "left", margin: "0" }}>Important</h2>
-        {important.map((todo) => (
-          <TodoItem key={todo.name} todo={todo} />
-        ))}
-      </div>
-      <div className="todoContainer" style={{ marginTop: "20px" }}>
-        <h2 style={{ textAlign: "left", margin: "0" }}>Tasks</h2>
-        {todos.map((todo) => (
-          <TodoItem key={todo.name} todo={todo} />
-        ))}
-      </div>
+      <TodoList
+        title="important"
+        todos={important}
+        emptyMessage="Star your tasks to make them important"
+      />
+      <TodoList
+        title="Tasks"
+        todos={todos}
+        emptyMessage="Add your tasks and they will appear here"
+      />
       <TodoInput />
     </main>
   );

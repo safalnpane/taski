@@ -6,8 +6,8 @@ const HomePage = () => {
   const todos = [
     {
       name: "Build Nextjs app",
-      done: false,
-      stared: false,
+      done: true,
+      stared: true,
     },
     {
       name: "Implement backend",
@@ -30,10 +30,17 @@ const HomePage = () => {
       stared: false,
     },
   ];
+  const important = todos.filter((todo) => todo.stared === true);
   return (
     <main className="container">
       <h1>Taski</h1>
       <div className="todoContainer">
+        <h2 style={{ textAlign: "left", margin: "0" }}>Important</h2>
+        {important.map((todo) => (
+          <TodoItem key={todo.name} todo={todo} />
+        ))}
+      </div>
+      <div className="todoContainer" style={{ marginTop: "20px" }}>
         <h2 style={{ textAlign: "left", margin: "0" }}>Tasks</h2>
         {todos.map((todo) => (
           <TodoItem key={todo.name} todo={todo} />

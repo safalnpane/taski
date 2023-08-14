@@ -18,7 +18,17 @@ const HomePage = () => {
     ]);
   }
 
-  function handleCheck() {}
+  function handleCheck(todoId) {
+    setTodos(
+      todos.map((todo) => {
+        if (todo.id === todoId) {
+          return { ...todo, done: !todo.done };
+        } else {
+          return todo;
+        }
+      })
+    );
+  }
 
   return (
     <main className="container">
@@ -27,11 +37,13 @@ const HomePage = () => {
         title="important"
         todos={todos.filter((todo) => todo.stared === true)}
         emptyMessage="Star your tasks to make them important"
+        handleCheck={handleCheck}
       />
       <TodoList
         title="Tasks"
         todos={todos}
         emptyMessage="Add your tasks and they will appear here"
+        handleCheck={handleCheck}
       />
       <TodoInput onClick={handleTodoAdd} />
     </main>

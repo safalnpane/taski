@@ -12,13 +12,14 @@ import {
 
 import styles from "./todoItem.module.css";
 
-const TodoItem = ({ todo }) => {
+const TodoItem = ({ todo, handleCheck }) => {
   return (
     <div className={styles.todoItem}>
       <div className={styles.todoText}>
         <FontAwesomeIcon
           icon={todo.done ? faCircleCheckFilled : faCircleCheck}
           className={styles.icon}
+          onClick={() => handleCheck(todo.id)}
         />
         <p style={{ textDecoration: todo.done ? "line-through" : "none" }}>
           {todo.name}

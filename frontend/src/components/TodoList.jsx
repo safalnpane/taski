@@ -2,7 +2,7 @@
 
 import TodoItem from "./TodoItem";
 
-const TodoList = ({ title, todos, emptyMessage }) => {
+const TodoList = ({ title, todos, emptyMessage, handleCheck }) => {
   return (
     <div className="todoContainer">
       <h2 style={{ textAlign: "left", margin: "0" }}>{title}</h2>
@@ -18,7 +18,7 @@ const TodoList = ({ title, todos, emptyMessage }) => {
         </p>
       ) : null}
       {todos.map((todo) => (
-        <TodoItem key={todo.id} todo={todo} />
+        <TodoItem key={todo.id} todo={todo} handleCheck={handleCheck} />
       ))}
     </div>
   );

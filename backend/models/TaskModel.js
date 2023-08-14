@@ -8,8 +8,17 @@ const TaskSchema = mongoose.Schema({
     required: true,
   },
   description: String,
-  isDone: Boolean,
+  isDone: {
+    type: Boolean,
+    required: true,
+    default: false,
+  },
+  isStared: {
+    type: Boolean,
+    reuqired: true,
+    default: false,
+  },
 });
 
 const TaskModel = mongoose.model("TaskModel", TaskSchema);
-module.export = TaskModel;
+module.exports = TaskModel;

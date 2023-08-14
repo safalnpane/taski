@@ -10,13 +10,16 @@ import TodoInput from "../components/TodoInput";
 const HomePage = () => {
   const [todos, setTodos] = useState([]);
 
-  const important = todos.filter((todo) => todo.stared === true);
+  function handleTodoAdd(task) {
+    setTodos([...todos, { name: task, done: false, stared: false }]);
+  }
+
   return (
     <main className="container">
       <h1>Taski</h1>
       <TodoList
         title="important"
-        todos={important}
+        todos={todos.filter((todo) => todo.stared === true)}
         emptyMessage="Star your tasks to make them important"
       />
       <TodoList
@@ -24,7 +27,7 @@ const HomePage = () => {
         todos={todos}
         emptyMessage="Add your tasks and they will appear here"
       />
-      <TodoInput />
+      <TodoInput onClick={handleTodoAdd} />
     </main>
   );
 };

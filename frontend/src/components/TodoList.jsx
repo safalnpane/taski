@@ -8,6 +8,7 @@ const TodoList = ({
   emptyMessage,
   handleCheck,
   handleStared,
+  handleDelete,
 }) => {
   return (
     <div className="todoContainer">
@@ -29,6 +30,7 @@ const TodoList = ({
           todo={todo}
           handleCheck={handleCheck}
           handleStared={handleStared}
+          handleDelete={handleDelete}
         />
       ))}
     </div>

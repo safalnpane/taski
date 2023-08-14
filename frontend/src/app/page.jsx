@@ -42,6 +42,10 @@ const HomePage = () => {
     );
   }
 
+  function handleDelete(todoId) {
+    setTodos(todos.filter((todo) => todo.id != todoId));
+  }
+
   return (
     <main className="container">
       <h1>Taski</h1>
@@ -51,6 +55,7 @@ const HomePage = () => {
         emptyMessage="Star your tasks to make them important"
         handleCheck={handleCheck}
         handleStared={handleStared}
+        handleDelete={handleDelete}
       />
       <TodoList
         title="Tasks"
@@ -58,6 +63,7 @@ const HomePage = () => {
         emptyMessage="Add your tasks and they will appear here"
         handleCheck={handleCheck}
         handleStared={handleStared}
+        handleDelete={handleDelete}
       />
       <TodoInput onClick={handleTodoAdd} />
     </main>

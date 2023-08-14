@@ -12,7 +12,7 @@ import {
 
 import styles from "./todoItem.module.css";
 
-const TodoItem = ({ todo, handleCheck, handleStared }) => {
+const TodoItem = ({ todo, handleCheck, handleStared, handleDelete }) => {
   return (
     <div className={styles.todoItem}>
       <div className={styles.todoText}>
@@ -34,6 +34,7 @@ const TodoItem = ({ todo, handleCheck, handleStared }) => {
         <FontAwesomeIcon
           icon={faCircleXmark}
           className={styles.icon + " " + styles.delete}
+          onClick={() => handleDelete(todo.id)}
         />
       </div>
     </div>

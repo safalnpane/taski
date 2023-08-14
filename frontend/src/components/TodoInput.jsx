@@ -12,6 +12,9 @@ const TodoInput = ({ onClick }) => {
   }
 
   function handleSubmit() {
+    if (newTask === "") {
+      return;
+    }
     onClick(newTask);
     setNewTask("");
   }

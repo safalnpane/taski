@@ -1,6 +1,10 @@
 // TodoItem.jsx
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faCircleCheck, faStar } from "@fortawesome/free-regular-svg-icons";
+import {
+  faCircleCheck,
+  faStar,
+  faCircleXmark,
+} from "@fortawesome/free-regular-svg-icons";
 import {
   faCircleCheck as faCircleCheckFilled,
   faStar as faStarFilled,
@@ -20,10 +24,16 @@ const TodoItem = ({ todo }) => {
           {todo.name}
         </p>
       </div>
-      <FontAwesomeIcon
-        icon={todo.stared ? faStarFilled : faStar}
-        className={styles.icon + " " + styles.star}
-      />
+      <div>
+        <FontAwesomeIcon
+          icon={todo.stared ? faStarFilled : faStar}
+          className={styles.icon + " " + styles.star}
+        />
+        <FontAwesomeIcon
+          icon={faCircleXmark}
+          className={styles.icon + " " + styles.delete}
+        />
+      </div>
     </div>
   );
 };

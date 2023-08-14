@@ -22,3 +22,8 @@
 .star {
   color: gold;
 }
+
+.delete {
+  color: lightcoral;
+  margin-left: 15px;
+}

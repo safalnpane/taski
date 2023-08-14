@@ -1,0 +1,32 @@
+/* todoInput.module.css */
+
+.todoInput {
+  position: fixed;
+  height: 10vh;
+  width: 50vw;
+  top: 70vh;
+  left: 20vw;
+  padding: 10px;
+  border-radius: 8px;
+}
+
+.formField {
+  width: 80%;
+  border: none;
+  border-radius: 8px 0px 0px 8px;
+  padding: 15px;
+  background-color: rgba(255, 255, 255, 0.6);
+}
+
+.formField::placeholder {
+  color: rgba(0, 0, 0, 0.8);
+  font-size: 13px;
+}
+
+.button {
+  background-color: rgba(0, 0, 0, 0.8);
+  text-decoration: none;
+  color: white;
+  padding: 11px 15px 14px 15px;
+  border-radius: 0px 8px 8px 0px;
+}

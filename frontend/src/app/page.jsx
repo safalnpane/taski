@@ -1,6 +1,7 @@
 // page.jsx
 
 import TodoItem from "../components/TodoItem";
+import TodoInput from "../components/TodoInput";
 
 const HomePage = () => {
   const todos = [
@@ -46,6 +47,7 @@ const HomePage = () => {
           <TodoItem key={todo.name} todo={todo} />
         ))}
       </div>
+      <TodoInput />
     </main>
   );
 };

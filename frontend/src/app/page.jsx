@@ -30,6 +30,18 @@ const HomePage = () => {
     );
   }
 
+  function handleStared(todoId) {
+    setTodos(
+      todos.map((todo) => {
+        if (todo.id === todoId) {
+          return { ...todo, stared: !todo.stared };
+        } else {
+          return todo;
+        }
+      })
+    );
+  }
+
   return (
     <main className="container">
       <h1>Taski</h1>
@@ -38,12 +50,14 @@ const HomePage = () => {
         todos={todos.filter((todo) => todo.stared === true)}
         emptyMessage="Star your tasks to make them important"
         handleCheck={handleCheck}
+        handleStared={handleStared}
       />
       <TodoList
         title="Tasks"
         todos={todos}
         emptyMessage="Add your tasks and they will appear here"
         handleCheck={handleCheck}
+        handleStared={handleStared}
       />
       <TodoInput onClick={handleTodoAdd} />
     </main>

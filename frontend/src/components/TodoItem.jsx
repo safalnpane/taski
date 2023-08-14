@@ -12,7 +12,7 @@ import {
 
 import styles from "./todoItem.module.css";
 
-const TodoItem = ({ todo, handleCheck }) => {
+const TodoItem = ({ todo, handleCheck, handleStared }) => {
   return (
     <div className={styles.todoItem}>
       <div className={styles.todoText}>
@@ -29,6 +29,7 @@ const TodoItem = ({ todo, handleCheck }) => {
         <FontAwesomeIcon
           icon={todo.stared ? faStarFilled : faStar}
           className={styles.icon + " " + styles.star}
+          onClick={() => handleStared(todo.id)}
         />
         <FontAwesomeIcon
           icon={faCircleXmark}

@@ -7,7 +7,6 @@ const TaskSchema = mongoose.Schema({
     type: String,
     required: true,
   },
-  description: String,
   isDone: {
     type: Boolean,
     required: true,

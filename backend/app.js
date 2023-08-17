@@ -10,6 +10,8 @@ const port = 3001;
 
 mongoose.connect("mongodb://localhost:27017/taski");
 
+app.use(express.json());
+
 app.get("/", (req, res) => {
   TaskModel.find().then((err, tasks) => {
     if (err) {
@@ -19,8 +21,14 @@ app.get("/", (req, res) => {
   });
 });
 
-app.post("/", (req, res) => {
-  res.send("hello post");
+app.post("/", async (req, res) => {
+  try {
+    const newTodo = new TaskModel(req.body);
+    await newTodo.save();
+    res.send(newTodo);
+  } catch (error) {
+    res.status(400).json({ error: error.message });
+  }
 });
 
 app.listen(port, () => {

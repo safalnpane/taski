@@ -1,8 +1,8 @@
 // page.jsx
 "use client";
 
-import { useState } from "react";
-import { v4 as uuid } from "uuid";
+import { useState, useEffect } from "react";
+import axios from "axios";
 
 import TodoItem from "../components/TodoItem";
 import TodoList from "../components/TodoList";
@@ -11,39 +11,78 @@ import TodoInput from "../components/TodoInput";
 const HomePage = () => {
   const [todos, setTodos] = useState([]);
 
+  useEffect(() => {
+    axios
+      .get("http://localhost:3001/")
+      .then((response) => {
+        setTodos(response.data);
+      })
+      .catch((err) => {
+        console.error("Error:", err);
+      });
+  }, []);
+
   function handleTodoAdd(task) {
-    setTodos([
-      ...todos,
-      { id: uuid(), name: task, done: false, stared: false },
-    ]);
+    const newTodo = { name: task, done: false, stared: false };
+
+    axios
+      .post("http://localhost:3001", newTodo)
+      .then((res) => {
+        setTodos([...todos, res.data]);
+      })
+      .catch((err) => {
+        console.error(err);
+      });
   }
 
   function handleCheck(todoId) {
-    setTodos(
-      todos.map((todo) => {
-        if (todo.id === todoId) {
-          return { ...todo, done: !todo.done };
-        } else {
-          return todo;
-        }
+    axios
+      .put("http://localhost:3001/check/" + todoId)
+      .then((res) => {
+        setTodos(
+          todos.map((todo) => {
+            if (todo._id === todoId) {
+              return { ...todo, ...res.data };
+            } else {
+              return todo;
+            }
+          })
+        );
       })
-    );
+      .catch((err) => {
+        console.error(err);
+      });
   }
 
   function handleStared(todoId) {
-    setTodos(
-      todos.map((todo) => {
-        if (todo.id === todoId) {
-          return { ...todo, stared: !todo.stared };
-        } else {
-          return todo;
-        }
+    axios
+      .put("http://localhost:3001/star/" + todoId)
+      .then((res) => {
+        setTodos(
+          todos.map((todo) => {
+            if (todo._id === todoId) {
+              return { ...todo, ...res.data };
+            } else {
+              return todo;
+            }
+          })
+        );
       })
-    );
+      .catch((err) => {
+        console.error(err);
+      });
   }
 
   function handleDelete(todoId) {
-    setTodos(todos.filter((todo) => todo.id != todoId));
+    axios
+      .delete("http://localhost:3001/" + todoId)
+      .then((res) => {
+        console.log(res.data);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+    setTodos(todos.filter((todo) => todo._id != todoId));
   }
 
   return (

@@ -2,6 +2,7 @@
 
 const express = require("express");
 const mongoose = require("mongoose");
+const cors = require("cors");
 
 const TaskModel = require("./models/TaskModel");
 
@@ -10,13 +11,18 @@ const port = 3001;
 
 mongoose.connect("mongodb://localhost:27017/taski");
 
+const corsOptions = {
+  origin: "http://localhost:3000",
+};
+
+app.use(cors(corsOptions));
 app.use(express.json());
 
 // Get the list of todos
 app.get("/", (req, res) => {
   TaskModel.find().then((err, tasks) => {
     if (err) {
-      res.send(err);
+      return res.send(err);
     }
     res.send(tasks);
   });
@@ -33,20 +39,39 @@ app.post("/", async (req, res) => {
   }
 });
 
-// Update a todo
-app.put("/:todoId", async (req, res) => {
+// Star a todo
+app.put("/star/:todoId", async (req, res) => {
+  const todoId = req.params.todoId;
   try {
-    const updatedTodo = await TaskModel.findOneAndUpdate(
-      { _id: req.params.todoId },
-      { name: req.body.name },
-      { new: true }
-    );
+    const todo = await TaskModel.findOne({ _id: todoId });
 
-    if (!updatedTodo) {
-      return res.status(400).json({ error: "todo not found" });
+    if (!todo) {
+      return res.status(404).json({ error: "todo not found" });
     }
 
-    res.json(updatedTodo);
+    todo.stared = !todo.stared;
+    await todo.save();
+
+    res.json(todo);
+  } catch (err) {
+    res.status(400).json({ error: err.message });
+  }
+});
+
+// Check todo
+app.put("/check/:todoId", async (req, res) => {
+  const todoId = req.params.todoId;
+  try {
+    const todo = await TaskModel.findOne({ _id: todoId });
+
+    if (!todo) {
+      return res.status(404).json({ error: "todo not found" });
+    }
+
+    todo.done = !todo.done;
+    await todo.save();
+
+    res.json(todo);
   } catch (err) {
     res.status(400).json({ error: err.message });
   }

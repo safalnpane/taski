@@ -19,7 +19,7 @@ const TodoItem = ({ todo, handleCheck, handleStared, handleDelete }) => {
         <FontAwesomeIcon
           icon={todo.done ? faCircleCheckFilled : faCircleCheck}
           className={styles.icon}
-          onClick={() => handleCheck(todo.id)}
+          onClick={() => handleCheck(todo._id)}
         />
         <p style={{ textDecoration: todo.done ? "line-through" : "none" }}>
           {todo.name}
@@ -29,12 +29,12 @@ const TodoItem = ({ todo, handleCheck, handleStared, handleDelete }) => {
         <FontAwesomeIcon
           icon={todo.stared ? faStarFilled : faStar}
           className={styles.icon + " " + styles.star}
-          onClick={() => handleStared(todo.id)}
+          onClick={() => handleStared(todo._id)}
         />
         <FontAwesomeIcon
           icon={faCircleXmark}
           className={styles.icon + " " + styles.delete}
-          onClick={() => handleDelete(todo.id)}
+          onClick={() => handleDelete(todo._id)}
         />
       </div>
     </div>

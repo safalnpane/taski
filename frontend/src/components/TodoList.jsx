@@ -26,7 +26,7 @@ const TodoList = ({
       ) : null}
       {todos.map((todo) => (
         <TodoItem
-          key={todo.id}
+          key={todo._id}
           todo={todo}
           handleCheck={handleCheck}
           handleStared={handleStared}

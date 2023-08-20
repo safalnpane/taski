@@ -7,12 +7,12 @@ const TaskSchema = mongoose.Schema({
     type: String,
     required: true,
   },
-  isDone: {
+  done: {
     type: Boolean,
     required: true,
     default: false,
   },
-  isStared: {
+  stared: {
     type: Boolean,
     reuqired: true,
     default: false,
